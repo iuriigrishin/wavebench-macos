@@ -2,3 +2,5 @@
 .header-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:flex-end}.header-actions a{font-size:13px;color:var(--teal);text-decoration:none}.header-actions a:hover{text-decoration:underline}
 
 #message:empty{display:none}
+
+.actions button{padding:12px 8px;min-width:0}

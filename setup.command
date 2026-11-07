@@ -6,8 +6,8 @@ if [[ -x /opt/homebrew/bin/python3.12 ]]; then
 elif command -v python3.12 >/dev/null 2>&1; then
   LAB_PYTHON=$(command -v python3.12)
 else
-  print "Установите Python 3.12: brew install python@3.12"
-  read "?Нажмите Enter для выхода…"
+  print "Install Python 3.12: brew install python@3.12"
+  read "?Press Enter to exit..."
   exit 1
 fi
 "$LAB_PYTHON" -m venv .venv
@@ -17,4 +17,4 @@ if [[ -d vendor/wheels ]]; then
 else
   .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt
 fi
-print "Готово. Откройте start.command."
+print "Ready. Run ./start.command"

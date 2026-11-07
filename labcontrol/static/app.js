@@ -4,11 +4,11 @@ const token=document.querySelector('meta[name="lab-token"]').content;
 let session=null, running=false, starting=false, stopping=false, outputMayBeOn=false, saving=false, epoch=0, frameId=null, lastFrame=null;
 const fmt=(x,n=5)=>x==null?"—":Number(x).toLocaleString("ru-RU",{maximumSignificantDigits:n});
 function msg(text,error=false){$("message").textContent=text;$("message").className=error?"error":"";}
-function buttons(){ $("start").disabled=starting||stopping||saving;$("start").textContent=starting?"Запускаем…":running?"Применить и пуск":"▶ Пуск";$("stop").disabled=stopping||(!outputMayBeOn&&!starting);$("save").disabled=!frameId||saving;$("save").textContent=saving?"Сохраняем…":"Сохранить кадр"; }
+function buttons(){ $("start").disabled=starting||stopping||saving;$("start").textContent=starting?"Запускаем…":running?"Применить":"▶ Пуск";$("stop").disabled=stopping||(!outputMayBeOn&&!starting);$("save").disabled=!frameId||saving;$("save").textContent=saving?"Сохраняем…":"Сохранить кадр"; }
 async function api(path,data){const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json","X-Lab-Token":token},body:JSON.stringify(data)});const value=await r.json();if(!r.ok)throw new Error(value.error||"Не удалось выполнить действие");return value;}
 function num(id){const v=$(id).value.trim().replace(",",".");if(!v||!Number.isFinite(Number(v)))throw new Error("Проверьте числовые параметры сигнала");return Number(v);}
 function signal(){return{channel:1,waveform:$("waveform").value,frequency_hz:num("frequency")*num("unit"),amplitude_vpp:num("amplitude"),offset_v:num("offset"),phase_deg:0,duty_percent:num("duty"),symmetry_percent:num("symmetry")};}
-function form(){const kind=$("waveform").value;$("frequency-row").hidden=kind==="DC";$("amplitude-row").hidden=kind==="DC";$("duty-row").hidden=!["SQUARE","PULSE"].includes(kind);$("symmetry-row").hidden=kind!=="RAMP";if(running)msg("Параметры изменены — нажмите «Применить и пуск».");}
+function form(){const kind=$("waveform").value;$("frequency-row").hidden=kind==="DC";$("amplitude-row").hidden=kind==="DC";$("duty-row").hidden=!["SQUARE","PULSE"].includes(kind);$("symmetry-row").hidden=kind!=="RAMP";if(running)msg("Параметры изменены — нажмите «Применить».");}
 function emptyPlot(text){if($("plot").classList.contains("js-plotly-plot"))Plotly.purge("plot");$("plot").replaceChildren();const box=document.createElement("div");box.className="empty";box.textContent=text;$("plot").append(box);}
 async function showFrame(frame){
   if(!$("plot").classList.contains("js-plotly-plot"))$("plot").replaceChildren();
