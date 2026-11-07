@@ -1,0 +1,16 @@
+# Local settings and all measurements
+/config.json
+/data/
+/data_demo/
+/docs/validation-data/
+/vendor/
+
+# Environment and caches
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.DS_Store
+.env
+.env.*

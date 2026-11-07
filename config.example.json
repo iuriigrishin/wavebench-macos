@@ -1,0 +1,12 @@
+{
+  "generator_serial": null,
+  "scope_serial": null,
+  "query_delay_s": 0.2,
+  "scope_query_delay_s": 0.04,
+  "usb_timeout_ms": 5000,
+  "adc_codes_per_division": 25.0,
+  "adc_polarity": 1.0,
+  "voltage_gain_correction": 1.0,
+  "voltage_offset_correction_v": 0.0,
+  "port": 8765
+}

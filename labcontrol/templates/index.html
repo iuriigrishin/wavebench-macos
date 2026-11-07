@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="lab-token" content="{{ token }}"><title>WaveBench · macOS</title><link rel="stylesheet" href="/static/style.css"><script defer src="/assets/plotly.js"></script><script defer src="/static/app.js"></script></head>
+<body data-demo="{{ 'true' if demo else 'false' }}">
+<header><div><div class="eyebrow">WAVESTATION CH1 → HANTEK CH1 · macOS</div><h1>Генератор → осциллограф</h1></div><div class="header-actions"><a href="/archive" target="_blank" rel="noopener">Записи</a><span id="state" class="state">Готово к пуску</span></div></header>
+{% if demo %}<div class="demo">Деморежим · приборы не используются</div>{% endif %}
+<main>
+<section class="controls"><h2>Сигнал</h2><div class="fields">
+<label>Форма сигнала<select id="waveform"><option value="SINE">Синус</option><option value="SQUARE">Меандр</option><option value="PULSE">Импульсы</option><option value="RAMP">Пила / треугольник</option><option value="DC">Постоянное напряжение</option></select></label>
+<div class="two" id="frequency-row"><label>Частота<input id="frequency" type="number" value="1" step="any" min="0"></label><label>Единицы<select id="unit"><option value="1">Гц</option><option value="1000" selected>кГц</option><option value="1000000">МГц</option></select></label></div>
+<label id="amplitude-row">Размах, Вpp<input id="amplitude" type="number" value="1" step="any" min="0.004"><small>Напряжение от минимума до максимума</small></label>
+<label>Смещение, В<input id="offset" type="number" value="0" step="any"></label>
+<label id="duty-row" hidden>Заполнение, %<input id="duty" type="number" value="50" min="0.1" max="99.9" step="any"></label>
+<label id="symmetry-row" hidden>Симметрия, %<input id="symmetry" type="number" value="50" min="0.1" max="99.9" step="any"></label>
+</div><div class="actions"><button id="start" class="primary">▶ Пуск</button><button id="stop" class="stop" disabled>■ Стоп</button></div><div id="applied" class="applied" hidden></div></section>
+<section class="result"><div class="plot-head"><h2>Осциллограмма</h2><span id="frame-time">Нет измерения</span></div><div id="plot"><div class="empty"><span class="empty-wave">∿</span><span>Задайте параметры и нажмите «Пуск»</span></div></div><div id="stats" class="stats" hidden></div><div id="warnings" class="warnings" role="status"></div>
+<div class="save-area" id="save-area" hidden><div class="save-main"><input id="title" type="text" maxlength="160" placeholder="Название записи (необязательно)" aria-label="Название записи"><button id="save" class="primary">Сохранить кадр</button></div><details><summary>Комментарий</summary><textarea id="note" rows="2" placeholder="Комментарий к измерению"></textarea></details><div id="saved" aria-live="polite"></div><p class="hint">Сохраняется показанный кадр.</p></div>
+</section>
+<div id="message" role="status" aria-live="polite"></div>
+</main><footer>macOS · WaveStation 2012 + Hantek DSO4104B</footer>
+</body></html>

@@ -1,0 +1,10 @@
+{
+  "channel": 1,
+  "waveform": "SINE",
+  "frequency_hz": 1000,
+  "amplitude_vpp": 1,
+  "offset_v": 0,
+  "phase_deg": 0,
+  "duty_percent": 50,
+  "symmetry_percent": 50
+}
