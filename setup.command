@@ -17,4 +17,4 @@ if [[ -d vendor/wheels ]]; then
 else
   .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt
 fi
-print "Готово. Откройте Запустить.command."
+print "Готово. Откройте start.command."
